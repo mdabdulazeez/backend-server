@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/backend-server-1.0-SNAPSHOT.jar app.jar
 
 # Expose port 8080 for the application
-EXPOSE 8080
+EXPOSE 8100
 
 # Command to run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
