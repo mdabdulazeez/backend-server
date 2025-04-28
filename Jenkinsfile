@@ -29,7 +29,7 @@ pipeline {
         stage('Collect IPs') {
             steps {
                 script {
-                    env.PUBLIC_IP = sh(script: "curl -s ifconfig.me", returnStdout: true).trim()
+                    env.PUBLIC_IP = sh(script: "curl -s http://checkip.amazonaws.com", returnStdout: true).trim()
                     env.PRIVATE_IP = sh(script: "hostname -I | awk '{print \$1}'", returnStdout: true).trim()
                     echo "Public IP: ${env.PUBLIC_IP}"
                     echo "Private IP: ${env.PRIVATE_IP}"
