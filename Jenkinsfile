@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    environment {
-        PUBLIC_IP = ''
-        PRIVATE_IP = ''
-    }
     stages {
         stage('Build') {
             steps {
@@ -26,21 +22,19 @@ pipeline {
                 sh 'sleep 10' // Wait for container to start
             }
         }
-        stage('Collect IPs') {
-            steps {
-                script {
-                    env.PUBLIC_IP = sh(script: "curl -s http://checkip.amazonaws.com", returnStdout: true).trim()
-                    env.PRIVATE_IP = sh(script: "hostname -I | awk '{print \$1}'", returnStdout: true).trim()
-                    echo "Public IP: ${env.PUBLIC_IP}"
-                    echo "Private IP: ${env.PRIVATE_IP}"
-                }
-            }
-        }
         stage('Test') {
             steps {
                 script {
+                    // Get IPs
+                    def publicIp = sh(script: "curl -s http://checkip.amazonaws.com", returnStdout: true).trim()
+                    def privateIp = sh(script: "hostname -I | awk '{print \$1}'", returnStdout: true).trim()
+                    
+                    echo "Public IP: ${publicIp}"
+                    echo "Private IP: ${privateIp}"
+                    
+                    // Test using public IP
                     echo "Testing service on public IP..."
-                    sh "curl -s http://${env.PUBLIC_IP}:8100/hello | grep 'Hello, World!'"
+                    sh "curl -s http://${publicIp}:8100/hello | grep 'Hello, World!'"
                     
                 }
             }
