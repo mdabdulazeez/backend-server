@@ -14,7 +14,7 @@
            }
            stage('Docker Run') {
                steps {
-                   sh 'docker run -d -p 8100:8100 --name backend-container backend-server'
+                   sh 'docker run -d -p 8100:8080 --name backend-container backend-server'
                }
            }
            stage('Test') {
