@@ -4,7 +4,7 @@ pipeline {
         stage('Fetch Artifact') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus-repo', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
-                    sh 'curl -u $NEXUS_USER:$NEXUS_PASS -O http://<your-instance-public-ip>:8081/repository/maven-repo/com/example/my-artifact/1.0/my-artifact-1.0.jar'
+                    sh "curl -u $NEXUS_USER:$NEXUS_PASS -O http://3.148.193.4:8081/repository/maven-repo/com/example/backend-server/1.0/backend-server-1.0.jar"
                 }
             }
         }
