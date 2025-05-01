@@ -6,7 +6,7 @@
     <groupId>com.example</groupId>
     <artifactId>backend-server</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>backend-server</name>
     
     <parent>
@@ -41,11 +41,6 @@
             <name>Nexus Repository</name>
             <url>http://3.148.193.4:8081/repository/maven-repo/</url>
         </repository>
-        <snapshotRepository>
-            <id>nexus-repo</id>
-            <name>Nexus Repository</name>
-            <url>http://3.148.193.4:8081/repository/maven-repo/</url>
-        </snapshotRepository>
     </distributionManagement>
     
     <build>
